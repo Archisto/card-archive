@@ -11,6 +11,7 @@ import java.util.*;
  * @version 2018-12-05
  */
 public class CardArchive {
+    private static final String PROGRAM_VERSION = "v1.8, 2018-12-05";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -133,20 +134,9 @@ public class CardArchive {
         }
     }
 
-    private static void printInstructions() {
-        System.out.println("How to use this program:");
-        System.out.println("- Give no command line arguments for a default run");
-        System.out.println("- Input one number to view that many cards");
-        System.out.println("- Input two numbers to view that many hands and cards in each hand");
-        System.out.println("- Input \"all\" to view all cards");
-        System.out.println("- Input \"stats\" to see how many cards and what categories are there");
-        System.out.println("- Input \"category\" or \"cat\" followed by a category number to view the cards in it");
-        System.out.println("- Input \"help\" or \"?\" to see these instructions");
-    }
-
    /**
     * Parses the user input for any special commands.
-    * The keywords are "all" and "stats".
+    * The keywords include "all", "category", "stats" and "help".
     *
     * @param cmdArgs the arguments given in command line
     * @returns will the main program be run
@@ -160,13 +150,14 @@ public class CardArchive {
                 showAll = true;
                 return true;
             }
-            // Show deck stats
-            else if (firstCommand.equals("stats")) {
-                return showStatsCommand(cmdArgs);
-            }
             // Show only cards that belong to a certain category
             else if (firstCommand.equals("category") || firstCommand.equals("cat")) {
-                return showCategoryCommand(cmdArgs);
+                return parseShowCategoryCommand(cmdArgs);
+            }
+            // Show deck stats
+            else if (firstCommand.equals("stats") || firstCommand.equals("info")) {
+                printStats();
+                return false;
             }
             // Show instructions
             else if (firstCommand.equals("help") || firstCommand.equals("?")) {
@@ -178,25 +169,53 @@ public class CardArchive {
         return true;
     }
 
-    private static boolean showStatsCommand(String[] cmdArgs) {
+   /**
+    * Prints information about Card Archive:
+    * - how many cards there are
+    * - what categories there are
+    * - how many cards there are in each category
+    * - current program version and credits.
+    */
+    private static void printStats() {
         System.out.println("Cards: " + deck.size());
         System.out.println("Categories: " + categorySizes.size());
         for (int i = 0; i < categorySizes.size(); i++) {
             System.out.format("[%d. %s] size: %d\n",
                 i, categoryName(i), categorySizes.get(i));
         }
-        return false;
+        
+        System.out.println("\nCurrent program version: " + PROGRAM_VERSION);
+        System.out.println("Created by Lauri Kosonen");
     }
 
-    private static boolean showCategoryCommand(String[] cmdArgs) {
+   /**
+    * Prints instructions on how to use this program.
+    */
+    private static void printInstructions() {
+        System.out.println("How to use this program:");
+        System.out.println("- Execute in command line in this format: java CardArchive argument1 argument2");
+        System.out.println("- Leave arguments out for a default run");
+        System.out.println("- Input one number to view that many cards");
+        System.out.println("- Input two numbers to view that many hands and cards in each hand");
+        System.out.println("- Input \"all\" to view all cards");
+        System.out.println("- Input \"stats\" or \"info\" to see how many cards and what categories are there");
+        System.out.println("- Input \"category\" or \"cat\" followed by a category number to view the cards in it");
+        System.out.println("- Input \"help\" or \"?\" to see these instructions");
+    }
 
-        // NOTE:
-        // Showing all cards in a category depends on the deck
-        // not being shuffled. Each category's first card's index
-        // in an unshuffled deck has been recorded and will be used
-        // in conjunction with the categories' sizes to get the
-        // correct cards from the deck.
-
+   /**
+    * Parses the user input for which category's cards will be displayed.
+    *
+    * Showing all cards in a category depends on the deck
+    * not being shuffled. Each category's first card's index
+    * in an unshuffled deck has been recorded and will be used
+    * in conjunction with the categories' sizes to get the
+    * correct cards from the deck.
+    *
+    * @param cmdArgs the arguments given in command line
+    * @returns will the main program be run
+    */
+    private static boolean parseShowCategoryCommand(String[] cmdArgs) {
         if (cmdArgs.length > 1) {
             try {
                 int input = Integer.parseInt(cmdArgs[1]);
