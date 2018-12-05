@@ -3,24 +3,25 @@ import java.util.*;
 /**
  * Card Archive: Game Elements
  *
- * Game element cards for brainstorming.
- * The program displays random game mechanics,
- * features, genres and other elements.
+ * A tool for coming up with game ideas.
+ * Displays random game mechanics, play styles, genres
+ * and other features you can find in games of all types.
  *
  * @author Lauri Kosonen
- * @version 2018-12-03
+ * @version 2018-12-05
  */
 public class CardArchive {
-    private static final int DECK_SIZE = 295;
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
-    private static Card[] deck;
+    private static List<Card> deck;
     private static Hand[] hands;
+    private static List<Integer> categorySizes;
+    private static List<Integer> categoryFirstCardIndexes;
     private static int handAmount = 0;
     private static int cardsInHand = 0;
-    private static int currInitCardIndex = 0;
     private static int drawnCardAmount = 0;
     private static boolean showAll = false;
+    private static int shownCategory = -1;
 
     // Ä, ä, Ö and ö characters, respectively,
     // by their ASCII numbers
@@ -40,75 +41,185 @@ public class CardArchive {
         System.out.println(title);
         System.out.println();
 
-        // Initializes the number of hands generated
-        // and how many cards is in a hand
-        initHandAmountAndSize(args);
+        boolean runMainProgram = true;
 
-        // Continues only if the number of 
-        // hands and hand size are positive
-        if (handAmount > 0 && cardsInHand > 0) {
+        // Creates the deck
+        initDeck();
 
-            // Creates and shuffles the deck
-            initDeck();
+        if (deck.size() == 0) {
+            System.out.println("There are no cards!");
+            runMainProgram = false;
+        }
+        else {
+            // Parses special commands
+            runMainProgram = parseSpecialCommands(args);
+        }
 
-            boolean emptyDeck = false;
-            boolean incompleteHand = false;
+        if (runMainProgram) {
 
-            // Creates and checks the hands
-            hands = new Hand[handAmount];
-            for (int i = 0; i < handAmount; i++) {
-                if (!emptyDeck) {
+            // Initializes the number of hands generated
+            // and how many cards are in a hand
+            initHandAmountAndSize(args);
 
-                    // Initializes the current hand
-                    hands[i] = new Hand(cardsInHand);
+            // Continues if the number of hands and hand size are positive
+            if (handAmount > 0 && (cardsInHand > 0 || showAll)) {
+                boolean emptyDeck = false;
+                boolean incompleteHand = false;
 
-                    // Adds cards to the hand
-                    for (int j = 0; j < cardsInHand; j++) {
-                        drawCard(i, j);
+                if (!showAll && shownCategory < 0) {
+                    shuffleDeck();
+                }
 
-                        System.out.print(formatCardIndex(j, cardsInHand));
+                // Creates and checks the hands
+                hands = new Hand[handAmount];
+                for (int i = 0; i < handAmount; i++) {
+                    if (!emptyDeck) {
 
-                        // Prints the current card
-                        if (hands[i].getCard(j) != null) {
+                        // Initializes the current hand
+                        hands[i] = new Hand(cardsInHand);
 
-                            // Prints the card's category
-                            if (PRINT_CATEGORIES) {
-                                System.out.print("[" + categoryName(
-                                    hands[i].getCard(j).getCategory()) + "] ");
+                        // Adds cards to the hand
+                        for (int j = 0; j < cardsInHand; j++) {
+                            if (shownCategory < 0) {
+                                drawCard(i, j);
+                            }
+                            else {
+                                drawCardInCategory(i, j, shownCategory);
                             }
 
-                            // Prints the card's name
-                            System.out.println(hands[i].getCard(j).getName());
-                        }
-                        else {
-                            System.out.println("< Card does not exist! >");
-                        }
+                            // Prints the card number
+                            System.out.print(formatCardIndex(j, cardsInHand));
 
-                        // Prevents further card adding and
-                        // hand checking if the deck is empty
-                        if (drawnCardAmount == DECK_SIZE) {
-                            emptyDeck = true;
-                            incompleteHand = (j < cardsInHand - 1);
+                            // Prints the current card
+                            if (hands[i].getCard(j) != null) {
 
-                            if (!showAll && (incompleteHand ||
-                                  !SHUFFLE_DECK_FOR_EACH_HAND)) {
-                                System.out.println("No more cards!");
+                                // Prints the card's category
+                                if (PRINT_CATEGORIES) {
+                                    System.out.print("[" + categoryName(
+                                        hands[i].getCard(j).getCategory()) + "] ");
+                                }
+
+                                // Prints the card's name
+                                System.out.println(hands[i].getCard(j).getName());
+                            }
+                            else {
+                                System.out.println("< Card does not exist! >");
                             }
 
-                            break;
+                            // Prevents further card adding and
+                            // hand checking if the deck is empty
+                            if (drawnCardAmount == deck.size()) {
+                                emptyDeck = true;
+                                incompleteHand = (j < cardsInHand - 1);
+
+                                if (!showAll && (cardsInHand < deck.size()) &&
+                                     (incompleteHand || SHUFFLE_DECK_FOR_EACH_HAND)) {
+                                    System.out.println("No more cards!");
+                                }
+
+                                break;
+                            }
                         }
-                    }
 
-                    System.out.println("------");
+                        System.out.println("------");
 
-                    if (SHUFFLE_DECK_FOR_EACH_HAND) {
-                        shuffleDeck();
-                        emptyDeck = false;
-                        incompleteHand = false;
+                        if (SHUFFLE_DECK_FOR_EACH_HAND) {
+                            shuffleDeck();
+                            emptyDeck = false;
+                        }
                     }
                 }
             }
         }
+    }
+
+    private static void printInstructions() {
+        System.out.println("How to use this program:");
+        System.out.println("- Give no command line arguments for a default run");
+        System.out.println("- Input one number to view that many cards");
+        System.out.println("- Input two numbers to view that many hands and cards in each hand");
+        System.out.println("- Input \"all\" to view all cards");
+        System.out.println("- Input \"stats\" to see how many cards and what categories are there");
+        System.out.println("- Input \"category\" or \"cat\" followed by a category number to view the cards in it");
+        System.out.println("- Input \"help\" or \"?\" to see these instructions");
+    }
+
+   /**
+    * Parses the user input for any special commands.
+    * The keywords are "all" and "stats".
+    *
+    * @param cmdArgs the arguments given in command line
+    * @returns will the main program be run
+    */
+    private static boolean parseSpecialCommands(String[] cmdArgs) {
+        if (cmdArgs.length > 0) {
+            String firstCommand = cmdArgs[0].toLowerCase();
+
+            // Show all cards
+            if (firstCommand.equals("all")) {
+                showAll = true;
+                return true;
+            }
+            // Show deck stats
+            else if (firstCommand.equals("stats")) {
+                return showStatsCommand(cmdArgs);
+            }
+            // Show only cards that belong to a certain category
+            else if (firstCommand.equals("category") || firstCommand.equals("cat")) {
+                return showCategoryCommand(cmdArgs);
+            }
+            // Show instructions
+            else if (firstCommand.equals("help") || firstCommand.equals("?")) {
+                printInstructions();
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean showStatsCommand(String[] cmdArgs) {
+        System.out.println("Cards: " + deck.size());
+        System.out.println("Categories: " + categorySizes.size());
+        for (int i = 0; i < categorySizes.size(); i++) {
+            System.out.format("[%d. %s] size: %d\n",
+                i, categoryName(i), categorySizes.get(i));
+        }
+        return false;
+    }
+
+    private static boolean showCategoryCommand(String[] cmdArgs) {
+
+        // NOTE:
+        // Showing all cards in a category depends on the deck
+        // not being shuffled. Each category's first card's index
+        // in an unshuffled deck has been recorded and will be used
+        // in conjunction with the categories' sizes to get the
+        // correct cards from the deck.
+
+        if (cmdArgs.length > 1) {
+            try {
+                int input = Integer.parseInt(cmdArgs[1]);
+                if (input >= 0 && input < categorySizes.size()) {
+                    shownCategory = input;
+                    return true;
+                }
+                else {
+                    System.out.format("The category number must be between 0 and %d.\n",
+                        categorySizes.size() - 1);
+                }
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Please input \"category\" or \"cat\" followed by " +
+                                   "a category number to view the cards in it.");
+            }
+        }
+        else {
+            System.out.println("Please input also a category's " +
+                               "number to view the cards in it.");
+        }
+
+        return false;
     }
 
    /**
@@ -122,13 +233,20 @@ public class CardArchive {
     */
     private static void initHandAmountAndSize(String[] handAmountArgs) {
 
+        // Displays all cards of a certain category
+        if (shownCategory >= 0) {
+            handAmount = 1;
+            cardsInHand = categorySizes.get(shownCategory);
+            if (cardsInHand == 0) {
+                System.out.println("The category is empty.");
+            }
+        }
         // Attempts to parse the input into two integers and
         // prints an error message if the input is invalid
-        if (handAmountArgs.length > 0) {
-            showAll = handAmountArgs[0].toLowerCase().equals("all");
+        else if (handAmountArgs.length > 0) {
             if (showAll) {
                 handAmount = 1;
-                cardsInHand = DECK_SIZE;
+                cardsInHand = deck.size();
             }
             else {
                 try {
@@ -147,9 +265,11 @@ public class CardArchive {
                     }
                 }
                 catch (NumberFormatException e) {
-                    System.out.println("The given input is not valid.");
+                    System.out.println("The given input is not valid.\n");
+                    printInstructions();
                     handAmount = 0;
                     cardsInHand = 0;
+                    return;
                 }
 
                 if (handAmount < 1 || cardsInHand < 1) {
@@ -157,9 +277,11 @@ public class CardArchive {
                     handAmount = 0;
                     cardsInHand = 0;
                 }
-                else if (cardsInHand > DECK_SIZE ||
-                    (!SHUFFLE_DECK_FOR_EACH_HAND && handAmount > DECK_SIZE)) {
-                    System.out.format("Invalid input - deck has %d cards.", DECK_SIZE);
+                else if (cardsInHand > deck.size() ||
+                         (!SHUFFLE_DECK_FOR_EACH_HAND &&
+                          handAmount > deck.size())) {
+                    System.out.format("Invalid input - the deck has %d cards.",
+                        deck.size());
                     System.out.println();
                     handAmount = 0;
                     cardsInHand = 0;
@@ -209,6 +331,9 @@ public class CardArchive {
                 return "Goal";
             }
             case 9: {
+                return "Audio & Visuals";
+            }
+            case 10: {
                 return "Miscellaneous";
             }
             
@@ -221,13 +346,14 @@ public class CardArchive {
     }
 
    /**
-    * Creates and shuffles the deck.
+    * Creates the deck.
     */
     private static void initDeck() {
 
         // Creates the deck
-        deck = new Card[DECK_SIZE];
-        currInitCardIndex = 0;
+        deck = new ArrayList<Card>();
+        categorySizes = new ArrayList<Integer>();
+        categoryFirstCardIndexes = new ArrayList<Integer>();
 
         // Group
         initCard(0, "Multiplayer");
@@ -502,47 +628,78 @@ public class CardArchive {
         initCard(8, "Last Man Standing");
         initCard(8, "Delivering a Payload");
         initCard(8, "Sandbox mode with unlimited resources");
+        // Audio & Visuals
+        initCard(9, "Limited vision");
+        initCard(9, "Limited hearing");
+        initCard(9, "Movement-based vision");
+        initCard(9, "Thermal sight");
+        initCard(9, "Echolocation");
+        initCard(9, "Characters'/objects' paths are visualized");
+        initCard(9, "Narrator");
         // Miscellaneous
-        initCard(9, "2D");
-        initCard(9, "3D");
-        initCard(9, "First-person view");
-        initCard(9, "Third-person view");
-        initCard(9, "Side-scrolling view");
-        initCard(9, "Top-down view");
-        initCard(9, "Isometric view");
-        initCard(9, "Virtual reality");
-        initCard(9, "Augmented reality");
-        initCard(9, "Motion controls");
-        initCard(9, "Board game");
-        initCard(9, "Cards");
-        initCard(9, "Chance and probability");
-        initCard(9, "Lighting and shadows");
-        initCard(9, "Farming");
-        initCard(9, "Hunting");
-        initCard(9, "Cooking");
-        initCard(9, "The game camera cannot be freely moved");
-        initCard(9, "Minimal or no HUD");
-        initCard(9, "Voice acting");
-        initCard(9, "In-game music player for the soundtrack");
-        initCard(9, "Sounds/voices are important");
-        initCard(9, "Colors are important");
-        initCard(9, "Fixing objects in place");
-        initCard(9, "Objects bounce off surfaces");
-        initCard(9, "Grabbing onto characters");
-        initCard(9, "A character/an object leaves a trail after it");
-        initCard(9, "Naming a character/an object");
-        initCard(9, "Saving the game anytime");
-        initCard(9, "New game +");
-        initCard(9, "Random gameplay modifiers");
-
-        // Shuffles the deck
-        shuffleDeck();
+        initCard(10, "2D");
+        initCard(10, "3D");
+        initCard(10, "First-person view");
+        initCard(10, "Third-person view");
+        initCard(10, "Side-scrolling view");
+        initCard(10, "Top-down view");
+        initCard(10, "Isometric view");
+        initCard(10, "Virtual reality");
+        initCard(10, "Augmented reality");
+        initCard(10, "Motion controls");
+        initCard(10, "Board game");
+        initCard(10, "Cards");
+        initCard(10, "Chance and probability");
+        initCard(10, "Lighting and shadows");
+        initCard(10, "Farming");
+        initCard(10, "Hunting");
+        initCard(10, "Cooking");
+        initCard(10, "The game camera cannot be freely moved");
+        initCard(10, "Minimal or no HUD");
+        initCard(10, "Voice acting");
+        initCard(10, "In-game music player for the soundtrack");
+        initCard(10, "Sounds/voices are important");
+        initCard(10, "Colors are important");
+        initCard(10, "Fixing objects in place");
+        initCard(10, "Objects bounce off surfaces");
+        initCard(10, "Grabbing onto characters");
+        initCard(10, "A character/an object leaves a trail after it");
+        initCard(10, "Naming a character/an object");
+        initCard(10, "Saving the game anytime");
+        initCard(10, "New game +");
+        initCard(10, "Random gameplay modifiers");
     }
 
     private static void initCard(int category, String name) {
-        if (currInitCardIndex < deck.length) {
-            deck[currInitCardIndex] = new Card(category, name);
-            currInitCardIndex++;
+        
+        // Creates the card
+        deck.add(new Card(category, name));
+
+        // Adds the current category and all previous
+        // missing ones to the category size list; also
+        // records the index of the category's first card.
+        if (categorySizes.size() <= category) {
+
+            // Missing categories
+            int categoryCount = categorySizes.size();
+            for (int i = 0; i < category - categoryCount; i++) { 
+                categorySizes.add(0);
+                categoryFirstCardIndexes.add(-1);
+            }
+
+            // Current category
+            categorySizes.add(1);
+            categoryFirstCardIndexes.add(deck.size() - 1);
+        }
+        // Increases the size of the current category and, if the category
+        // was empty, records the index of the category's first card
+        else {
+            int startingCategorySize = categorySizes.get(category);
+            categorySizes.set(category, startingCategorySize + 1);
+            
+            if (startingCategorySize == 0) {
+                categoryFirstCardIndexes.set(category, deck.size() - 1);
+            }
         }
     }
 
@@ -551,19 +708,17 @@ public class CardArchive {
     * Does nothing if every card is shown.
     */
     private static void shuffleDeck() {
-        if (!showAll) {
-            double rand;
-            Card temp;
-            for (int i = 0; i < deck.length; i++) {
-                rand = Math.random();
-                int randCardIndex = (int) (rand * deck.length);
-                temp = deck[randCardIndex];
-                deck[randCardIndex] = deck[i];
-                deck[i] = temp;
-            }
-
-            drawnCardAmount = 0;
+        double rand;
+        Card temp;
+        for (int i = 0; i < deck.size(); i++) {
+            rand = Math.random();
+            int randCardIndex = (int) (rand * deck.size());
+            temp = deck.get(randCardIndex);
+            deck.set(randCardIndex, deck.get(i));
+            deck.set(i, temp);
         }
+
+        drawnCardAmount = 0;
     }
 
    /**
@@ -574,7 +729,23 @@ public class CardArchive {
     */
     private static void drawCard(int handIndex, int cardIndex) {
         if (handIndex < handAmount && cardIndex < cardsInHand) {
-            hands[handIndex].addCard(cardIndex, deck[drawnCardAmount]);
+            hands[handIndex].addCard(cardIndex, deck.get(drawnCardAmount));
+            drawnCardAmount++;
+        }
+    }
+
+   /**
+    * Takes a card which belongs a given category and adds it to a hand.
+    *
+    * @param handIndex  a hand's index
+    * @param cardIndex  a card's index
+    * @param category   a category's index
+    */
+    private static void drawCardInCategory(int handIndex, int cardIndex, int category) {
+        if (category >= 0 && category < categorySizes.size() &&
+             cardIndex < cardsInHand) {
+            hands[handIndex].addCard(cardIndex,
+                deck.get(categoryFirstCardIndexes.get(category) + cardIndex));
             drawnCardAmount++;
         }
     }
