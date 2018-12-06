@@ -622,6 +622,7 @@ public class CardArchive {
         initCard(7, "Reviving fallen teammates");
         initCard(7, "Respawning next to a teammate");
         initCard(7, "Second wind revival");
+        initCard(7, "Grabbing onto characters");
         initCard(7, "Catching thrown/flying objects");
         initCard(7, "Capturing characters/creatures");
         initCard(7, "Absorbing everything to oneself");
@@ -635,6 +636,8 @@ public class CardArchive {
         initCard(7, "Being affected by staying close to certain things");
         initCard(7, "Something happens only if the player moves");
         initCard(7, "A character/an object can go through walls");
+        initCard(7, "Objects bounce off surfaces");
+        initCard(7, "Fixing objects in place");
         // Items
         initCard(8, "Inventory");
         initCard(8, "Looting");
@@ -726,6 +729,8 @@ public class CardArchive {
         initCard(10, "Side-scrolling view");
         initCard(10, "Top-down view");
         initCard(10, "Isometric view");
+        initCard(10, "Virtual reality");
+        initCard(10, "Augmented reality");
         initCard(10, "Sounds/voices are important");
         initCard(10, "Colors are important");
         initCard(10, "Lighting and shadows");
@@ -744,8 +749,6 @@ public class CardArchive {
         initCard(10, "Narrator");
         initCard(10, "In-game music player for the soundtrack");
         // Miscellaneous
-        initCard(11, "Virtual reality");
-        initCard(11, "Augmented reality");
         initCard(11, "Motion controls");
         initCard(11, "Unusual controls");
         initCard(11, "Word game");
@@ -758,9 +761,6 @@ public class CardArchive {
         initCard(11, "Cooking");
         initCard(11, "Drawing");
         initCard(11, "Haunting");
-        initCard(11, "Fixing objects in place");
-        initCard(11, "Objects bounce off surfaces");
-        initCard(11, "Grabbing onto characters");
         initCard(11, "Limited tries/lives");
         initCard(11, "Save points");
         initCard(11, "Saving the game anytime");
