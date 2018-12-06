@@ -164,6 +164,14 @@ public class CardArchive {
                 printInstructions();
                 return false;
             }
+            // Show only cards that belong to a certain category
+            else {
+                int categoryNumber = categoryNumber(firstCommand);
+                if (categoryNumber >= 0) {
+                    shownCategory = categoryNumber;
+                    return true;
+                }
+            }
         }
 
         return true;
@@ -198,9 +206,10 @@ public class CardArchive {
         System.out.println("- Possible arguments:");
         System.out.println("  - Input one number to view that many cards");
         System.out.println("  - Input two numbers to view that many hands and cards in each hand");
+        System.out.println("  - Input a category's name to view the cards in it");
+        System.out.println("  - Input \"category\" or \"cat\" followed by a category number to view the cards in it");
         System.out.println("  - Input \"all\" to view all cards");
         System.out.println("  - Input \"stats\" or \"info\" to see how many cards and what categories are there");
-        System.out.println("  - Input \"category\" or \"cat\" followed by a category number to view the cards in it");
         System.out.println("  - Input \"help\" or \"?\" to see these instructions");
         System.out.println("- Press the Enter key to run the program");
         System.out.println("- Press the Up arrow key to insert the previous command and run the program again");
@@ -318,7 +327,32 @@ public class CardArchive {
         }
     }
 
-    /**
+   /**
+    * Returns a category's number based on the given name.
+    * Returns -1 if the name doesn't match with any category.
+    * Only the first 3 letters are checked,
+    * so the argument can be shortened.
+    *
+    * @param categoryName a category's name
+    * @return the number of a category or -1 for error
+    */
+    public static int categoryNumber(String categoryName) {
+        if (categoryName != null && categoryName.length() >= 3) {
+            categoryName = categoryName.toLowerCase().substring(0, 3);
+
+            for (int i = 0; i < categorySizes.size(); i++) {
+                String catCandidate =
+                    categoryName(i).toLowerCase().substring(0, 3);
+                if (categoryName.equals(catCandidate)) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+   /**
     * Returns a category's name based on the given number.
     *
     * @param categoryNumber a category's number
@@ -654,9 +688,9 @@ public class CardArchive {
         initCard(8, "Excavation tool");
         initCard(8, "Landscaping/farming tools");
         initCard(8, "Musical instruments");
-        initCard(8, "Money is handled like normal stackable items");
         initCard(8, "Earning or paying salary");
         initCard(8, "Factions use different currencies");
+        initCard(8, "Cash as an inventory item");
         initCard(8, "World map as an inventory item");
         initCard(8, "World map shows special information");
         initCard(8, "Unreliable world map");
