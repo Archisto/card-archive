@@ -193,14 +193,18 @@ public class CardArchive {
     */
     private static void printInstructions() {
         System.out.println("How to use this program:");
-        System.out.println("- Execute in command line in this format: java CardArchive argument1 argument2");
-        System.out.println("- Leave arguments out for a default run");
-        System.out.println("- Input one number to view that many cards");
-        System.out.println("- Input two numbers to view that many hands and cards in each hand");
-        System.out.println("- Input \"all\" to view all cards");
-        System.out.println("- Input \"stats\" or \"info\" to see how many cards and what categories are there");
-        System.out.println("- Input \"category\" or \"cat\" followed by a category number to view the cards in it");
-        System.out.println("- Input \"help\" or \"?\" to see these instructions");
+        System.out.println("- Execute in command line by writing the command in this format: java CardArchive argument1 argument2");
+        System.out.println("- Leave arguments out to run the program using the default settings");
+        System.out.println("- Possible arguments:");
+        System.out.println("  - Input one number to view that many cards");
+        System.out.println("  - Input two numbers to view that many hands and cards in each hand");
+        System.out.println("  - Input \"all\" to view all cards");
+        System.out.println("  - Input \"stats\" or \"info\" to see how many cards and what categories are there");
+        System.out.println("  - Input \"category\" or \"cat\" followed by a category number to view the cards in it");
+        System.out.println("  - Input \"help\" or \"?\" to see these instructions");
+        System.out.println("- Press the Enter key to run the program");
+        System.out.println("- Press the Up arrow key to insert the previous command and run the program again");
+        System.out.println("- With each run you get different results depending on the arguments");
     }
 
    /**
@@ -401,7 +405,7 @@ public class CardArchive {
         initCard(0, "Leaving messages for other players");
         initCard(0, "Speaking to a crowd");
         initCard(0, "Family");
-        initCard(0, "Crowds/hordes");
+        initCard(0, "Crowd/horde");
         initCard(0, "Hive mind");
         // World
         initCard(1, "Open world");
