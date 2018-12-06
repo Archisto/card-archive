@@ -8,10 +8,10 @@ import java.util.*;
  * and other features you can find in games of all types.
  *
  * @author Lauri Kosonen
- * @version 2018-12-05
+ * @version 2018-12-06
  */
 public class CardArchive {
-    private static final String PROGRAM_VERSION = "v1.8, 2018-12-05";
+    private static final String PROGRAM_VERSION = "v1.8, 2018-12-06";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -183,7 +183,7 @@ public class CardArchive {
             System.out.format("[%d. %s] size: %d\n",
                 i, categoryName(i), categorySizes.get(i));
         }
-        
+
         System.out.println("\nCurrent program version: " + PROGRAM_VERSION);
         System.out.println("Created by Lauri Kosonen");
     }
@@ -248,9 +248,9 @@ public class CardArchive {
     * them into integers.
     * Giving no arguments defaults in the hand number of 1, hand size of 5.
     *
-    * @param handAmountArgs the arguments given in command line
+    * @param cmdArgs the arguments given in command line
     */
-    private static void initHandAmountAndSize(String[] handAmountArgs) {
+    private static void initHandAmountAndSize(String[] cmdArgs) {
 
         // Displays all cards of a certain category
         if (shownCategory >= 0) {
@@ -262,7 +262,7 @@ public class CardArchive {
         }
         // Attempts to parse the input into two integers and
         // prints an error message if the input is invalid
-        else if (handAmountArgs.length > 0) {
+        else if (cmdArgs.length > 0) {
             if (showAll) {
                 handAmount = 1;
                 cardsInHand = deck.size();
@@ -271,16 +271,16 @@ public class CardArchive {
                 try {
                     // If there's only one command line argument,
                     // the argument is for the number of cards in hand
-                    if (handAmountArgs.length == 1) {
+                    if (cmdArgs.length == 1) {
                         handAmount = 1;
-                        cardsInHand = Integer.parseInt(handAmountArgs[0]);
+                        cardsInHand = Integer.parseInt(cmdArgs[0]);
                     }
                     // If there's two or more, the first command
                     // line argument is for the number of hands and
                     // the second is for the number of cards in hand
                     else {
-                        handAmount = Integer.parseInt(handAmountArgs[0]);
-                        cardsInHand = Integer.parseInt(handAmountArgs[1]);
+                        handAmount = Integer.parseInt(cmdArgs[0]);
+                        cardsInHand = Integer.parseInt(cmdArgs[1]);
                     }
                 }
                 catch (NumberFormatException e) {
@@ -355,7 +355,7 @@ public class CardArchive {
             case 10: {
                 return "Miscellaneous";
             }
-            
+
             // Prints an error message if the
             // category's number is out of limits
             default: {
@@ -368,8 +368,6 @@ public class CardArchive {
     * Creates the deck.
     */
     private static void initDeck() {
-
-        // Creates the deck
         deck = new ArrayList<Card>();
         categorySizes = new ArrayList<Integer>();
         categoryFirstCardIndexes = new ArrayList<Integer>();
@@ -381,38 +379,55 @@ public class CardArchive {
         initCard(0, "Asymmetrical multiplayer");
         initCard(0, "Asynchronous multiplayer");
         initCard(0, "Turn-based gameplay");
+        initCard(0, "Players start at different times");
         initCard(0, "Game master");
+        initCard(0, "Mentor");
+        initCard(0, "Referee");
         initCard(0, "Player guilds");
         initCard(0, "Faction war");
         initCard(0, "Commanding players/units");
         initCard(0, "Recruiting characters/units");
+        initCard(0, "Converting enemies to the player's side");
         initCard(0, "Membership in different groups");
+        initCard(0, "Rising through the ranks");
         initCard(0, "Temporary alliance against a common enemy");
         initCard(0, "Betraying the player's own team");
         initCard(0, "Being undercover as a member of a different team");
         initCard(0, "Dead players change sides");
         initCard(0, "Summonable allies");
-        initCard(0, "Pets/familiars");
+        initCard(0, "AI-controlled sidekick/companion/pet");
         initCard(0, "AI-controlled minions");
-        initCard(0, "Blending in crowds");
+        initCard(0, "Unusual forms of communication");
         initCard(0, "Leaving messages for other players");
-        initCard(0, "Seeing through another player's eyes");
-        initCard(0, "Players start at different times");
+        initCard(0, "Speaking to a crowd");
+        initCard(0, "Family");
+        initCard(0, "Crowds/hordes");
+        initCard(0, "Hive mind");
         // World
         initCard(1, "Open world");
         initCard(1, "Exploration");
         initCard(1, "Day-night cycle");
         initCard(1, "Changing weather");
+        initCard(1, "Wildlife");
         initCard(1, "Large height differences");
+        initCard(1, "Long distances");
+        initCard(1, "Vast emptiness");
         initCard(1, "Confined spaces");
         initCard(1, "Underground tunnels");
+        initCard(1, "Rolling hills");
+        initCard(1, "Alien landscape");
+        initCard(1, "Hellscape");
+        initCard(1, "Impossible environment");
+        initCard(1, "Parallel worlds");
+        initCard(1, "Safety indoors, danger outdoors");
         initCard(1, "Environmental hazards");
         initCard(1, "Hazards rain from above");
         initCard(1, "Flood");
         initCard(1, "Burning heat");
         initCard(1, "Freezing cold");
-        initCard(1, "Toxic gas");
+        initCard(1, "Deadly gas/liquid/radiation");
         initCard(1, "Invisible walls or platforms");
+        initCard(1, "Barriers that only let specific things through");
         initCard(1, "Randomly generated area");
         initCard(1, "Secret areas");
         initCard(1, "Fog of war");
@@ -422,7 +437,7 @@ public class CardArchive {
         initCard(1, "Optional activities");
         initCard(1, "Random events");
         initCard(1, "The world lives even if the player is away");
-        initCard(1, "Parallel worlds");
+        initCard(1, "Abandoned place/object");
         // Influence
         initCard(2, "Controlling an area");
         initCard(2, "Reshaping the environment");
@@ -431,10 +446,14 @@ public class CardArchive {
         initCard(2, "Level editor");
         initCard(2, "Base building");
         initCard(2, "Home decoration");
+        initCard(2, "Founding cities");
         initCard(2, "Factions and reputation");
         initCard(2, "Research and technology");
-        initCard(2, "Keeping a population happy");
+        initCard(2, "Getting feedback from advisors/customers");
+        initCard(2, "Keeping people happy");
         initCard(2, "Participating in politics");
+        initCard(2, "Voting on subjects");
+        initCard(2, "Court of law");
         initCard(2, "Running a business");
         initCard(2, "Creating traps/obstacles/barricades");
         initCard(2, "Creating climbable surfaces");
@@ -453,9 +472,14 @@ public class CardArchive {
         initCard(3, "Controlling a part of the world");
         initCard(3, "Looking after the character's needs");
         initCard(3, "The character's feelings");
+        initCard(3, "Growing up");
+        initCard(3, "Religion");
         initCard(3, "Karma system");
         initCard(3, "Power-ups and downs");
         initCard(3, "Blessings and curses");
+        initCard(3, "Diseases and cures");
+        initCard(3, "Insanity");
+        initCard(3, "Imprisonment");
         initCard(3, "Fall damage");
         initCard(3, "Shield/invulnerability");
         initCard(3, "Abilities with cooldowns");
@@ -469,18 +493,25 @@ public class CardArchive {
         initCard(3, "Mechanical/cybernetic enhancements");
         initCard(3, "Divine enhancements");
         initCard(3, "Unholy enhancements");
+        initCard(3, "Transfering one's mind into a different body");
+        initCard(3, "Reincarnating as a different being");
         initCard(3, "The character's size is important");
         initCard(3, "The character's appearance influences gameplay");
         initCard(3, "The character's disability influences gameplay");
         // Navigation
         initCard(4, "Platforming/climbing");
         initCard(4, "Fast travel/teleportation");
+        initCard(4, "Limited mobility/movement points");
         initCard(4, "Speed");
         initCard(4, "Quick downhill movement");
         initCard(4, "Grinding on rails");
+        initCard(4, "Grabbing onto walls and ceiling");
         initCard(4, "Swinging on ropes or such");
         initCard(4, "Pole vaulting");
         initCard(4, "Wall running");
+        initCard(4, "Rolling/spinning/orbiting");
+        initCard(4, "Jumping on falling objects");
+        initCard(4, "A character/an object can go through walls");
         initCard(4, "On-rails action");
         initCard(4, "Backtracking");
         initCard(4, "Vehicles");
@@ -489,13 +520,19 @@ public class CardArchive {
         initCard(4, "Operating a vehicle as a team");
         initCard(4, "Boarding vehicles as a stowaway");
         initCard(4, "Hitchhiking");
+        initCard(4, "Riding");
         initCard(4, "Swimming");
         initCard(4, "Diving");
         initCard(4, "Gliding");
         initCard(4, "Flying");
+        initCard(4, "Burrowing through the ground");
         initCard(4, "Sea travel");
         initCard(4, "Space travel");
         initCard(4, "Train/handcar");
+        initCard(4, "Traffic");
+        initCard(4, "Smuggling");
+        initCard(4, "Shipwreck");
+        initCard(4, "The planet's curvature influences gameplay");
         // Thinking
         initCard(5, "Puzzles");
         initCard(5, "Using certain tools/skills on certain objects");
@@ -503,26 +540,31 @@ public class CardArchive {
         initCard(5, "Repeating past events/levels with new knowledge");
         initCard(5, "Physics-based gameplay");
         initCard(5, "Unusual gravity");
+        initCard(5, "Telekinesis");
         initCard(5, "Invisibility");
         initCard(5, "Mind control");
         initCard(5, "Manipulating time");
         initCard(5, "Witnessing past/future events");
         initCard(5, "Wielding magic");
         initCard(5, "The four classical elements");
+        initCard(5, "Electricity/lightning");
         initCard(5, "Redirecting beams of light");
         initCard(5, "Special sight ability");
-        initCard(5, "Seeing characters/objects through walls");
-        initCard(5, "Super hearing");
         initCard(5, "Conversation options");
         initCard(5, "Moral choices");
+        initCard(5, "Making a deal");
+        initCard(5, "Exchanging health for something");
+        initCard(5, "Exchanging freedom for something");
         initCard(5, "Database");
         initCard(5, "Item descriptions");
+        initCard(5, "Unexplained items and contraptions");
         initCard(5, "Taking notes is recommended");
         initCard(5, "Detective work");
         initCard(5, "Deciphering clues");
         initCard(5, "Passcodes and encrypted messages");
         initCard(5, "Programming/hacking");
         initCard(5, "Pattern recognition");
+        initCard(5, "Memorization");
         initCard(5, "Truth and lies");
         initCard(5, "Pulling and pushing");
         initCard(5, "Doors and keys");
@@ -532,18 +574,20 @@ public class CardArchive {
         initCard(6, "Combat");
         initCard(6, "Aerial combat");
         initCard(6, "Naval combat");
+        initCard(6, "Space combat");
         initCard(6, "Mech combat");
-        initCard(6, "Regenerating health");
-        initCard(6, "Permanent death");
+        initCard(6, "Martial arts");
         initCard(6, "Stun attacks");
         initCard(6, "Damage-over-time attacks");
         initCard(6, "Explosive attacks");
         initCard(6, "Combo attacks");
         initCard(6, "Melee weapons");
+        initCard(6, "Throwing weapons and picking them up again");
         initCard(6, "Ranged weapons and ammunition");
         initCard(6, "Target-locking weapons");
         initCard(6, "Mines");
         initCard(6, "Sniping from a long distance");
+        initCard(6, "Assassination");
         initCard(6, "Marking targets");
         initCard(6, "Dodging attacks");
         initCard(6, "Deflecting attacks");
@@ -552,21 +596,23 @@ public class CardArchive {
         initCard(6, "Weapons can be found in the world");
         initCard(6, "Equipped weapon changes after getting a kill");
         initCard(6, "Using objects in the world as ammunition");
-        initCard(6, "Taking enemies' equipment");
         initCard(6, "Pushing enemies off ledges");
+        initCard(6, "Regenerating health");
         initCard(6, "Healing teammates");
         initCard(6, "Reviving fallen teammates");
         initCard(6, "Respawning next to a teammate");
         initCard(6, "Second wind revival");
+        initCard(6, "Permanent death");
         initCard(6, "No respawning until the round/wave ends");
+        initCard(6, "Necromancy");
         initCard(6, "Boss enemy");
         initCard(6, "Stealthy enemies");
         initCard(6, "Exploding enemies");
         initCard(6, "Regenerating enemies");
         initCard(6, "Enemies which spawn more enemies");
         initCard(6, "Enemies which give power-ups to others");
+        initCard(6, "Enemies which won't attack unless provoked");
         initCard(6, "Weak, fleeing enemies with good loot");
-        initCard(6, "Enemy swarms");
         initCard(6, "Enemy waves");
         initCard(6, "Enemies spawn constantly");
         initCard(6, "Enemies alert others of the player");
@@ -581,16 +627,20 @@ public class CardArchive {
         initCard(7, "Gifts");
         initCard(7, "Brewing potions");
         initCard(7, "Poisons and antidotes");
+        initCard(7, "Phone/walkie-talkie");
         initCard(7, "Binoculars/spyglass");
-        initCard(7, "Photography camera");
         initCard(7, "Grappling hook");
         initCard(7, "Repair tool");
         initCard(7, "Excavation tool");
         initCard(7, "Landscaping/farming tools");
         initCard(7, "Musical instruments");
         initCard(7, "Money is handled like normal stackable items");
+        initCard(7, "Earning or paying salary");
         initCard(7, "Factions use different currencies");
         initCard(7, "World map as an inventory item");
+        initCard(7, "World map shows special information");
+        initCard(7, "Unreliable world map");
+        initCard(7, "Inventory as an in-world object");
         initCard(7, "Lore items");
         initCard(7, "Decoy items");
         initCard(7, "Breadcrumb trail items");
@@ -601,6 +651,7 @@ public class CardArchive {
         initCard(7, "Limited item durability");
         initCard(7, "Breaking items down to their components");
         initCard(7, "Dead characters drop their equipment");
+        initCard(7, "Taking enemies' equipment");
         initCard(7, "Items have random stats");
         initCard(7, "Items can be enhanced by adding trinkets");
         initCard(7, "Items can be enhanced by using them");
@@ -614,8 +665,9 @@ public class CardArchive {
         initCard(8, "Tournament with multiple matches");
         initCard(8, "Score");
         initCard(8, "Quests");
+        initCard(8, "Education");
         initCard(8, "Racing");
-        initCard(8, "Stealth");
+        initCard(8, "Stealth/hiding");
         initCard(8, "Rhythm action");
         initCard(8, "Gambling");
         initCard(8, "Doing stunts");
@@ -626,71 +678,103 @@ public class CardArchive {
         initCard(8, "The objective's position is random");
         initCard(8, "Failure changes the objective");
         initCard(8, "Points can be stolen from the opponent");
-        initCard(8, "A guiding arrow/line");
         initCard(8, "Outlasting the opponent");
         initCard(8, "Surviving as long as possible");
         initCard(8, "Evading obstacles");
         initCard(8, "Escaping from something/somewhere");
         initCard(8, "Protecting a target");
         initCard(8, "Rescuing characters");
+        initCard(8, "Capturing characters/creatures");
         initCard(8, "Defending an area");
+        initCard(8, "Finding a home");
         initCard(8, "Finding items");
         initCard(8, "Taking an item to the goal");
+        initCard(8, "Delivering cargo/a payload");
         initCard(8, "Catching thrown/flying objects");
         initCard(8, "Hiding something from the opponent");
         initCard(8, "Revisiting levels with new tools/powers");
+        initCard(8, "Keeping balance");
+        initCard(8, "Making two ends connect");
+        initCard(8, "Absorbing everything to oneself");
+        initCard(8, "Special challenges");
+        initCard(8, "Daily challenges");
         initCard(8, "Different game modes");
         initCard(8, "King of the Hill");
         initCard(8, "Capture the Flag");
         initCard(8, "Team Deathmatch");
         initCard(8, "Free-for-All");
         initCard(8, "Last Man Standing");
-        initCard(8, "Delivering a Payload");
         initCard(8, "Sandbox mode with unlimited resources");
         // Audio & Visuals
+        initCard(9, "2D");
+        initCard(9, "3D");
+        initCard(9, "First-person view");
+        initCard(9, "Third-person view");
+        initCard(9, "Side-scrolling view");
+        initCard(9, "Top-down view");
+        initCard(9, "Isometric view");
+        initCard(9, "Sounds/voices are important");
+        initCard(9, "Colors are important");
+        initCard(9, "Lighting and shadows");
+        initCard(9, "Minimal or no HUD");
+        initCard(9, "Seeing through another player's eyes");
+        initCard(9, "Seeing characters/objects through walls");
+        initCard(9, "The game camera cannot be freely moved");
+        initCard(9, "Unusual vision");
+        initCard(9, "Enhanced hearing");
         initCard(9, "Limited vision");
         initCard(9, "Limited hearing");
-        initCard(9, "Movement-based vision");
-        initCard(9, "Thermal sight");
-        initCard(9, "Echolocation");
+        initCard(9, "A character/an object leaves a trail after it");
         initCard(9, "Characters'/objects' paths are visualized");
+        initCard(9, "A guiding arrow/line");
+        initCard(9, "Voice acting");
         initCard(9, "Narrator");
+        initCard(9, "In-game music player for the soundtrack");
         // Miscellaneous
-        initCard(10, "2D");
-        initCard(10, "3D");
-        initCard(10, "First-person view");
-        initCard(10, "Third-person view");
-        initCard(10, "Side-scrolling view");
-        initCard(10, "Top-down view");
-        initCard(10, "Isometric view");
         initCard(10, "Virtual reality");
         initCard(10, "Augmented reality");
         initCard(10, "Motion controls");
+        initCard(10, "Unusual controls");
+        initCard(10, "Word game");
         initCard(10, "Board game");
         initCard(10, "Cards");
         initCard(10, "Chance and probability");
-        initCard(10, "Lighting and shadows");
+        initCard(10, "Naming a character/an object");
         initCard(10, "Farming");
         initCard(10, "Hunting");
         initCard(10, "Cooking");
-        initCard(10, "The game camera cannot be freely moved");
-        initCard(10, "Minimal or no HUD");
-        initCard(10, "Voice acting");
-        initCard(10, "In-game music player for the soundtrack");
-        initCard(10, "Sounds/voices are important");
-        initCard(10, "Colors are important");
+        initCard(10, "Haunting");
+        initCard(10, "Drawing");
+        initCard(10, "Photography");
+        initCard(10, "Looking at/away from something causes an effect");
+        initCard(10, "Being affected by staying close to certain things");
+        initCard(10, "Something happens only if the player moves");
         initCard(10, "Fixing objects in place");
         initCard(10, "Objects bounce off surfaces");
         initCard(10, "Grabbing onto characters");
-        initCard(10, "A character/an object leaves a trail after it");
-        initCard(10, "Naming a character/an object");
+        initCard(10, "Characters/objects can fuse and form a single entity");
+        initCard(10, "Limited tries/lives");
+        initCard(10, "Save points");
         initCard(10, "Saving the game anytime");
         initCard(10, "New game +");
         initCard(10, "Random gameplay modifiers");
+        initCard(10, "Comedy");
+        initCard(10, "Drama");
+        initCard(10, "Romance");
+        initCard(10, "Musical");
+        initCard(10, "Mystery");
+        initCard(10, "Thriller");
+        initCard(10, "Horror"); 
     }
 
+   /**
+    * Initializes a card.
+    *
+    * @param category    a category's index
+    * @param name        the card's name
+    */
     private static void initCard(int category, String name) {
-        
+
         // Creates the card
         deck.add(new Card(category, name));
 
@@ -701,7 +785,7 @@ public class CardArchive {
 
             // Missing categories
             int categoryCount = categorySizes.size();
-            for (int i = 0; i < category - categoryCount; i++) { 
+            for (int i = 0; i < category - categoryCount; i++) {
                 categorySizes.add(0);
                 categoryFirstCardIndexes.add(-1);
             }
@@ -715,7 +799,7 @@ public class CardArchive {
         else {
             int startingCategorySize = categorySizes.get(category);
             categorySizes.set(category, startingCategorySize + 1);
-            
+
             if (startingCategorySize == 0) {
                 categoryFirstCardIndexes.set(category, deck.size() - 1);
             }
