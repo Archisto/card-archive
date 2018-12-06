@@ -209,7 +209,7 @@ public class CardArchive {
         System.out.println("  - Input a category's name to view the cards in it");
         System.out.println("  - Input \"category\" or \"cat\" followed by a category number to view the cards in it");
         System.out.println("  - Input \"all\" to view all cards");
-        System.out.println("  - Input \"stats\" or \"info\" to see how many cards and what categories are there");
+        System.out.println("  - Input \"stats\" or \"info\" to see how many cards and what categories there are");
         System.out.println("  - Input \"help\" or \"?\" to see these instructions");
         System.out.println("- Press the Enter key to run the program");
         System.out.println("- Press the Up arrow key to insert the previous command and run the program again");
@@ -426,15 +426,15 @@ public class CardArchive {
         initCard(0, "Referee");
         initCard(0, "Player guilds");
         initCard(0, "Faction war");
+        initCard(0, "Membership in different groups");
+        initCard(0, "Rising through the ranks");
         initCard(0, "Commanding players/units");
         initCard(0, "Recruiting characters/units");
         initCard(0, "Converting enemies to the player's team");
-        initCard(0, "Membership in different groups");
-        initCard(0, "Rising through the ranks");
+        initCard(0, "Dead players change teams");
         initCard(0, "Temporary alliance against a common enemy");
         initCard(0, "Betraying the player's own team");
         initCard(0, "Being undercover as a member of a different team");
-        initCard(0, "Dead players change sides");
         initCard(0, "Summonable allies");
         initCard(0, "AI-controlled sidekick/companion/pet");
         initCard(0, "AI-controlled minions");
@@ -491,7 +491,7 @@ public class CardArchive {
         initCard(2, "Founding cities");
         initCard(2, "Factions and reputation");
         initCard(2, "Research and technology");
-        initCard(2, "Getting feedback from advisors/customers");
+        initCard(2, "Getting feedback from advisors/citizens/customers");
         initCard(2, "Keeping people happy");
         initCard(2, "Participating in politics");
         initCard(2, "Voting on subjects");
@@ -674,7 +674,7 @@ public class CardArchive {
         initCard(7, "Fixing objects in place");
         // Items
         initCard(8, "Inventory");
-        initCard(8, "Looting");
+        initCard(8, "Finding items");
         initCard(8, "Crafting");
         initCard(8, "Buying and selling");
         initCard(8, "Trading");
@@ -739,11 +739,10 @@ public class CardArchive {
         initCard(9, "Rescuing characters");
         initCard(9, "Defending an area");
         initCard(9, "Finding a home");
-        initCard(9, "Finding items");
         initCard(9, "Taking an item to the goal");
         initCard(9, "Delivering cargo/a payload");
         initCard(9, "Hiding something from the opponent");
-        initCard(9, "Revisiting levels with new tools/powers");
+        initCard(9, "Revisiting areas/levels with new tools/powers");
         initCard(9, "Keeping balance");
         initCard(9, "Making two ends connect");
         initCard(9, "Special challenges");

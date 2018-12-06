@@ -13,7 +13,7 @@ How to use this program:
   - Input a category's name to view the cards in it
   - Input "category" or "cat" followed by a category number to view the cards in it
   - Input "all" to view all cards
-  - Input "stats" or "info" to see how many cards and what categories are there
+  - Input "stats" or "info" to see how many cards and what categories there are
   - Input "help" or "?" to see these instructions
 - Press the Enter key to run the program
 - Press the Up arrow key to insert the previous command and run the program again
