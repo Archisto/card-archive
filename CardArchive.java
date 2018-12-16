@@ -7,11 +7,13 @@ import java.util.*;
  * Displays random game mechanics, play styles, genres
  * and other features you can find in games of all types.
  *
+ * See the instructions for using the program from line 205 onwards.
+ *
  * @author Lauri Kosonen
- * @version 2018-12-06
+ * @version 2018-12-16
  */
 public class CardArchive {
-    private static final String PROGRAM_VERSION = "v1.8, 2018-12-06";
+    private static final String PROGRAM_VERSION = "v2.0, 2018-12-16";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -237,7 +239,7 @@ public class CardArchive {
                     return true;
                 }
                 else {
-                    System.out.format("The category number must be between 0 and %d.\n",
+                    System.out.format("The category number must be between 0 and %d (inclusive).\n",
                         categorySizes.size() - 1);
                 }
             }
@@ -498,10 +500,11 @@ public class CardArchive {
         initCard(2, "Voting on subjects");
         initCard(2, "Court of law");
         initCard(2, "Running a business");
+        initCard(2, "Adding things to walls");
         initCard(2, "Creating traps/obstacles/barricades");
         initCard(2, "Creating climbable surfaces");
         initCard(2, "Creating roads for faster travel");
-        initCard(2, "Adding things to walls");
+        initCard(2, "Vehicle customization");
         initCard(2, "Automating tasks");
         initCard(2, "Rerouting power to different systems");
         initCard(2, "Dead/frozen characters remain as parts of the environment");
@@ -563,7 +566,7 @@ public class CardArchive {
         initCard(4, "Burrowing through the ground");
         initCard(4, "Sea travel");
         initCard(4, "Space travel");
-        initCard(4, "Train/handcar");
+        initCard(4, "Rail transport");
         initCard(4, "Traffic");
         initCard(4, "Smuggling");
         initCard(4, "Shipwreck");
@@ -571,22 +574,22 @@ public class CardArchive {
         // Thinking
         initCard(5, "Puzzles");
         initCard(5, "Using certain tools/skills on certain objects");
-        initCard(5, "Revisiting areas/levels with new tools/powers");
-        initCard(5, "Scouting an area before entering");
+        initCard(5, "Revisiting areas/levels with new tools/skills");
         initCard(5, "Repeating past events/levels with new knowledge");
+        initCard(5, "Scouting an area before entering");
         initCard(5, "Physics-based gameplay");
         initCard(5, "Unusual gravity");
         initCard(5, "Witnessing past/future events");
         initCard(5, "The four classical elements");
         initCard(5, "Redirecting beams of light");
         initCard(5, "Making two ends connect");
-        initCard(5, "Swapping characters’/objects’ positions");
+        initCard(5, "Swapping characters'/objects' positions");
         initCard(5, "Conversation options");
         initCard(5, "Moral choices");
         initCard(5, "Making a deal");
         initCard(5, "Exchanging health for something");
         initCard(5, "Exchanging freedom for something");
-        initCard(5, "Database");
+        initCard(5, "Database/journal/bestiary");
         initCard(5, "Item descriptions");
         initCard(5, "Unexplained items and contraptions");
         initCard(5, "Taking notes is recommended");
@@ -619,14 +622,15 @@ public class CardArchive {
         initCard(6, "Mines");
         initCard(6, "Sniping from a long distance");
         initCard(6, "Assassination");
+        initCard(6, "Pushing enemies off ledges");
         initCard(6, "Dodging attacks");
         initCard(6, "Deflecting attacks");
         initCard(6, "Friendly fire");
         initCard(6, "Weaknesses and resistances to attacks");
+        initCard(6, "Focusing attacks on certain parts of the target");
         initCard(6, "Weapons can be found in the world");
         initCard(6, "Equipped weapon changes after getting a kill");
         initCard(6, "Using objects in the world as ammunition");
-        initCard(6, "Pushing enemies off ledges");
         initCard(6, "Permanent death");
         initCard(6, "No respawning until the round/wave ends");
         initCard(6, "Boss enemy");
@@ -646,7 +650,7 @@ public class CardArchive {
         initCard(7, "Abilities with cooldowns");
         initCard(7, "Wielding magic");
         initCard(7, "Psychic abilities");
-        initCard(7, "Telekinesis");
+        initCard(7, "Levitating objects");
         initCard(7, "Mind control");
         initCard(7, "Cloning");
         initCard(7, "Necromancy");
@@ -694,7 +698,6 @@ public class CardArchive {
         initCard(8, "Landscaping/farming tools");
         initCard(8, "Musical instruments");
         initCard(8, "Earning or paying salary");
-        initCard(8, "Factions use different currencies");
         initCard(8, "Cash as an inventory item");
         initCard(8, "World map as an inventory item");
         initCard(8, "World map shows special information");
@@ -718,6 +721,7 @@ public class CardArchive {
         initCard(8, "Renewable resources/items in the world");
         initCard(8, "Scarcity of resources");
         initCard(8, "Equipment transmogrification");
+        initCard(8, "Factions use different gear, currencies or vehicles");
         // Goal
         initCard(9, "Competition");
         initCard(9, "Leaderboard");
@@ -741,10 +745,10 @@ public class CardArchive {
         initCard(9, "Evading obstacles");
         initCard(9, "Reaching a point in the world");
         initCard(9, "Escaping from something/somewhere");
+        initCard(9, "Finding a home or other safe place");
         initCard(9, "Protecting a target");
         initCard(9, "Rescuing characters");
         initCard(9, "Defending an area");
-        initCard(9, "Finding a home or other safe place");
         initCard(9, "Taking an item to the goal");
         initCard(9, "Delivering cargo/a payload");
         initCard(9, "Hiding something from the opponent");
@@ -812,7 +816,7 @@ public class CardArchive {
         initCard(11, "Musical");
         initCard(11, "Mystery");
         initCard(11, "Thriller");
-        initCard(11, "Horror"); 
+        initCard(11, "Horror");
     }
 
    /**
