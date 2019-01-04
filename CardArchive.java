@@ -10,10 +10,10 @@ import java.util.*;
  * See the instructions for using the program from line 205 onwards.
  *
  * @author Lauri Kosonen
- * @version 2018-12-16
+ * @version 2019-01-04
  */
 public class CardArchive {
-    private static final String PROGRAM_VERSION = "v2.0, 2018-12-16";
+    private static final String PROGRAM_VERSION = "v2.0, 2019-01-04";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -487,11 +487,13 @@ public class CardArchive {
         initCard(2, "Reshaping the environment");
         initCard(2, "The environment reshapes itself");
         initCard(2, "Destroying objects/environment");
-        initCard(2, "Areas can be made safe");
         initCard(2, "Level editor");
         initCard(2, "Base building");
         initCard(2, "Home decoration");
-        initCard(2, "Founding cities");
+        initCard(2, "Founding cities or other settlements");
+        initCard(2, "Affecting the ecosystem");
+        initCard(2, "Areas can be made safe");
+        initCard(2, "Some rules can be broken, intentionally or not");
         initCard(2, "Factions and reputation");
         initCard(2, "Research and technology");
         initCard(2, "Getting feedback from advisors/citizens/customers");
@@ -500,6 +502,7 @@ public class CardArchive {
         initCard(2, "Voting on subjects");
         initCard(2, "Court of law");
         initCard(2, "Running a business");
+        initCard(2, "Player-driven economy");
         initCard(2, "Adding things to walls");
         initCard(2, "Creating traps/obstacles/barricades");
         initCard(2, "Creating climbable surfaces");
@@ -514,18 +517,20 @@ public class CardArchive {
         initCard(3, "Skill tree");
         initCard(3, "Character classes");
         initCard(3, "Multiple controllable characters/units");
-        initCard(3, "Controlling a part of the world");
+        initCard(3, "No controllable characters");
         initCard(3, "Looking after the character's needs");
         initCard(3, "The character's feelings");
         initCard(3, "Growing up");
         initCard(3, "Religion");
         initCard(3, "Karma system");
+        initCard(3, "Personality quirks");
         initCard(3, "Power-ups and downs");
         initCard(3, "Blessings and curses");
         initCard(3, "Diseases and cures");
         initCard(3, "Insanity");
         initCard(3, "Imprisonment");
         initCard(3, "Fall damage");
+        initCard(3, "Ragdoll physics");
         initCard(3, "Buying levels/skills/power");
         initCard(3, "Disguises");
         initCard(3, "Changing form");
@@ -553,6 +558,7 @@ public class CardArchive {
         initCard(4, "Jumping on falling objects");
         initCard(4, "On-rails action");
         initCard(4, "Backtracking");
+        initCard(4, "Shortcuts");
         initCard(4, "Vehicles");
         initCard(4, "Summonable vehicles");
         initCard(4, "Operating a vehicle as a team");
@@ -591,6 +597,8 @@ public class CardArchive {
         initCard(5, "Exchanging freedom for something");
         initCard(5, "Database/journal/bestiary");
         initCard(5, "Item descriptions");
+        initCard(5, "Examining documents or recordings");
+        initCard(5, "Examining the environment’s details");
         initCard(5, "Unexplained items and contraptions");
         initCard(5, "Taking notes is recommended");
         initCard(5, "Detective work");
@@ -679,8 +687,10 @@ public class CardArchive {
         initCard(7, "Being affected by staying close to certain things");
         initCard(7, "Something happens only if the player moves");
         initCard(7, "A character/an object can go through walls");
+        initCard(7, "Crashing into things");
         initCard(7, "Objects bounce off surfaces");
         initCard(7, "Fixing objects in place");
+        initCard(7, "Losing abilities or items is necessary to progress");
         // Items
         initCard(8, "Inventory");
         initCard(8, "Finding items");
@@ -789,16 +799,20 @@ public class CardArchive {
         initCard(10, "Voice acting");
         initCard(10, "Narrator");
         initCard(10, "In-game music player for the soundtrack");
+        initCard(10, "Creating sounds or music");
         // Miscellaneous
         initCard(11, "Mobile game");
         initCard(11, "Motion controls");
         initCard(11, "Unusual controls");
+        initCard(11, "The controls consist of only one or two buttons");
+        initCard(11, "The core gameplay loop lasts only a minute or less");
         initCard(11, "Word game");
         initCard(11, "Board game");
         initCard(11, "Cards");
         initCard(11, "Gambling");
         initCard(11, "Chance and probability");
         initCard(11, "Crime and punishment");
+        initCard(11, "A made-up language");
         initCard(11, "Naming a character/an object");
         initCard(11, "Farming");
         initCard(11, "Hunting");
@@ -809,6 +823,7 @@ public class CardArchive {
         initCard(11, "Save points");
         initCard(11, "Saving the game anytime");
         initCard(11, "New game +");
+        initCard(11, "Configurable gameplay variables");
         initCard(11, "Random gameplay modifiers");
         initCard(11, "Comedy");
         initCard(11, "Drama");
