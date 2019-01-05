@@ -13,7 +13,7 @@ import java.util.*;
  * @version 2019-01-04
  */
 public class CardArchive {
-    private static final String PROGRAM_VERSION = "v2.0, 2019-01-04";
+    private static final String PROGRAM_VERSION = "v2.0, 2019-01-05";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -90,7 +90,7 @@ public class CardArchive {
                                 drawCardInCategory(i, j, shownCategory);
                             }
 
-                            // Prints the card number
+                            // Prints the card's index number
                             System.out.print(formatCardIndex(j, cardsInHand));
 
                             // Prints the current card
@@ -214,7 +214,7 @@ public class CardArchive {
         System.out.println("  - Input \"stats\" or \"info\" to see how many cards and what categories there are");
         System.out.println("  - Input \"help\" or \"?\" to see these instructions");
         System.out.println("- Press the Enter key to run the program");
-        System.out.println("- Press the Up arrow key to insert the previous command and run the program again");
+        System.out.println("- Press the Up arrow key to insert the previous command to eliminate unnecessary retyping");
         System.out.println("- With each run you get different results depending on the arguments");
     }
 
@@ -421,7 +421,6 @@ public class CardArchive {
         initCard(0, "Co-op/versus game");
         initCard(0, "Asymmetrical multiplayer");
         initCard(0, "Asynchronous multiplayer");
-        initCard(0, "Turn-based gameplay");
         initCard(0, "Players start at different times");
         initCard(0, "Other players can join and leave anytime");
         initCard(0, "Game master");
@@ -460,7 +459,8 @@ public class CardArchive {
         initCard(1, "Underground tunnels");
         initCard(1, "Rolling hills");
         initCard(1, "Alien landscape");
-        initCard(1, "Hellscape");
+        initCard(1, "Bleak or hostile landscape");
+        initCard(1, "Abandoned place/object");
         initCard(1, "Impossible environment");
         initCard(1, "Parallel worlds");
         initCard(1, "Safety indoors, danger outdoors");
@@ -481,7 +481,6 @@ public class CardArchive {
         initCard(1, "Optional activities");
         initCard(1, "Random events");
         initCard(1, "The world lives even if the player is away");
-        initCard(1, "Abandoned place/object");
         // Influence
         initCard(2, "Controlling an area");
         initCard(2, "Reshaping the environment");
@@ -598,7 +597,7 @@ public class CardArchive {
         initCard(5, "Database/journal/bestiary");
         initCard(5, "Item descriptions");
         initCard(5, "Examining documents or recordings");
-        initCard(5, "Examining the environment’s details");
+        initCard(5, "Examining the environment's details");
         initCard(5, "Unexplained items and contraptions");
         initCard(5, "Taking notes is recommended");
         initCard(5, "Detective work");
@@ -680,6 +679,8 @@ public class CardArchive {
         initCard(7, "Characters/objects can fuse and form a single entity");
         initCard(7, "Transfering one's mind into a different body");
         initCard(7, "Reincarnating as a different being");
+        initCard(7, "Haunting");
+        initCard(7, "Drawing");
         initCard(7, "Photography");
         initCard(7, "Marking targets");
         initCard(7, "Special sight ability");
@@ -710,8 +711,7 @@ public class CardArchive {
         initCard(8, "Earning or paying salary");
         initCard(8, "Cash as an inventory item");
         initCard(8, "World map as an inventory item");
-        initCard(8, "World map shows special information");
-        initCard(8, "Unreliable world map");
+        initCard(8, "Maps show special information");
         initCard(8, "Inventory as an in-world object");
         initCard(8, "Lore items");
         initCard(8, "Decoy items");
@@ -804,8 +804,10 @@ public class CardArchive {
         initCard(11, "Mobile game");
         initCard(11, "Motion controls");
         initCard(11, "Unusual controls");
+        initCard(11, "The gameplay relies on the mouse cursor");
         initCard(11, "The controls consist of only one or two buttons");
         initCard(11, "The core gameplay loop lasts only a minute or less");
+        initCard(11, "Turn-based gameplay");
         initCard(11, "Word game");
         initCard(11, "Board game");
         initCard(11, "Cards");
@@ -817,8 +819,6 @@ public class CardArchive {
         initCard(11, "Farming");
         initCard(11, "Hunting");
         initCard(11, "Cooking");
-        initCard(11, "Drawing");
-        initCard(11, "Haunting");
         initCard(11, "Limited tries/lives");
         initCard(11, "Save points");
         initCard(11, "Saving the game anytime");
@@ -875,7 +875,6 @@ public class CardArchive {
 
    /**
     * Shuffles the deck.
-    * Does nothing if every card is shown.
     */
     private static void shuffleDeck() {
         double rand;
@@ -952,6 +951,15 @@ public class CardArchive {
                " - " + card.getName();
     }
 
+   /**
+    * Formats the index that is printed before a card's name.
+    * Depending on how many digits the last index has, adds
+    * spaces before the index number.
+    *
+    * @param cardIndex  the current card's index
+    * @param maxIndex   the last card's index
+    * @return formatted card index
+    */
     private static String formatCardIndex(int cardIndex, int maxIndex) {
         String formattedCardIndex = "";
 
