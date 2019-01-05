@@ -16,5 +16,5 @@ How to use this program:
   - Input "stats" or "info" to see how many cards and what categories there are
   - Input "help" or "?" to see these instructions
 - Press the Enter key to run the program
-- Press the Up arrow key to insert the previous command and run the program again
+- Press the Up arrow key to insert the previous command to eliminate unnecessary retyping
 - With each run you get different results depending on the arguments
