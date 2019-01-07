@@ -10,10 +10,10 @@ import java.util.*;
  * See the instructions for using the program from line 205 onwards.
  *
  * @author Lauri Kosonen
- * @version 2019-01-04
+ * @version 2019-01-06
  */
 public class CardArchiveShowcaseV2_0 {
-    private static final String PROGRAM_VERSION = "v2.0, 2019-01-05";
+    private static final String PROGRAM_VERSION = "v2.0, 2019-01-06";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -422,13 +422,16 @@ public class CardArchiveShowcaseV2_0 {
         initCard(0, "Rising through the ranks");
         initCard(0, "Converting enemies to the player's team");
         initCard(0, "Dead players change teams");
+        initCard(0, "Temporary alliance against a common threat");
+        initCard(0, "Betraying one's own team");
         initCard(0, "AI-controlled sidekick/companion/pet");
-        initCard(0, "Unusual forms of communication");
+        initCard(0, "Unusual form of communication");
         initCard(0, "Leaving messages for others");
         initCard(0, "Speaking to a crowd");
         initCard(0, "Family");
         initCard(0, "Crowd/horde");
         initCard(0, "Hive mind");
+        initCard(0, "Secret society");
         // World
         initCard(1, "Wildlife");
         initCard(1, "Long distances");
@@ -460,6 +463,7 @@ public class CardArchiveShowcaseV2_0 {
         initCard(3, "Insanity");
         initCard(3, "Imprisonment");
         initCard(3, "Ragdoll physics");
+        initCard(3, "Divine/unholy enhancements");
         // Navigation
         initCard(4, "Limited mobility/movement points");
         initCard(4, "Grabbing onto walls and ceiling");
@@ -584,8 +588,11 @@ public class CardArchiveShowcaseV2_0 {
         initCard(11, "Word game");
         initCard(11, "Crime and punishment");
         initCard(11, "A made-up language");
+        initCard(11, "Naming a character, place or an object");
         initCard(11, "Limited tries/lives");
         initCard(11, "Save points");
+        initCard(11, "Being defeated makes the threat more difficult");
+        initCard(11, "The game only ends in the player's failure");
         initCard(11, "Configurable gameplay variables");
         initCard(11, "Comedy");
         initCard(11, "Drama");

@@ -10,10 +10,10 @@ import java.util.*;
  * See the instructions for using the program from line 205 onwards.
  *
  * @author Lauri Kosonen
- * @version 2019-01-04
+ * @version 2019-01-06
  */
 public class CardArchive {
-    private static final String PROGRAM_VERSION = "v2.0, 2019-01-05";
+    private static final String PROGRAM_VERSION = "v2.0, 2019-01-06";
     private static final boolean SHUFFLE_DECK_FOR_EACH_HAND = false;
     private static final boolean PRINT_CATEGORIES = true;
     private static List<Card> deck;
@@ -434,18 +434,19 @@ public class CardArchive {
         initCard(0, "Recruiting characters/units");
         initCard(0, "Converting enemies to the player's team");
         initCard(0, "Dead players change teams");
-        initCard(0, "Temporary alliance against a common enemy");
-        initCard(0, "Betraying the player's own team");
+        initCard(0, "Temporary alliance against a common threat");
+        initCard(0, "Betraying one's own team");
         initCard(0, "Being undercover as a member of a different team");
         initCard(0, "Summonable allies");
         initCard(0, "AI-controlled sidekick/companion/pet");
         initCard(0, "AI-controlled minions");
-        initCard(0, "Unusual forms of communication");
+        initCard(0, "Unusual form of communication");
         initCard(0, "Leaving messages for others");
         initCard(0, "Speaking to a crowd");
         initCard(0, "Family");
         initCard(0, "Crowd/horde");
         initCard(0, "Hive mind");
+        initCard(0, "Secret society");
         // World
         initCard(1, "Open world");
         initCard(1, "Exploration");
@@ -537,8 +538,7 @@ public class CardArchive {
         initCard(3, "Beast form");
         initCard(3, "Biological enhancements");
         initCard(3, "Mechanical/cybernetic enhancements");
-        initCard(3, "Divine enhancements");
-        initCard(3, "Unholy enhancements");
+        initCard(3, "Divine/unholy enhancements");
         initCard(3, "The character's size is important");
         initCard(3, "The character's appearance influences gameplay");
         initCard(3, "The character's disability influences gameplay");
@@ -652,7 +652,6 @@ public class CardArchive {
         initCard(6, "Enemies spawn constantly");
         initCard(6, "Enemies alert others of the player");
         initCard(6, "Enemies can't leave their territories");
-        initCard(6, "Enemy grows stronger when it defeats the player");
         // Abilities
         initCard(7, "Abilities with cooldowns");
         initCard(7, "Wielding magic");
@@ -740,8 +739,8 @@ public class CardArchive {
         initCard(9, "Quests");
         initCard(9, "Education");
         initCard(9, "Racing");
-        initCard(9, "Rhythm action");
         initCard(9, "Doing stunts");
+        initCard(9, "Rhythm action");
         initCard(9, "Strategy game");
         initCard(9, "Tycoon game");
         initCard(9, "God game");
@@ -756,8 +755,8 @@ public class CardArchive {
         initCard(9, "Reaching a point in the world");
         initCard(9, "Escaping from something/somewhere");
         initCard(9, "Finding a home or other safe place");
-        initCard(9, "Protecting a target");
         initCard(9, "Rescuing characters");
+        initCard(9, "Protecting a target");
         initCard(9, "Defending an area");
         initCard(9, "Taking an item to the goal");
         initCard(9, "Delivering cargo/a payload");
@@ -815,7 +814,7 @@ public class CardArchive {
         initCard(11, "Chance and probability");
         initCard(11, "Crime and punishment");
         initCard(11, "A made-up language");
-        initCard(11, "Naming a character/an object");
+        initCard(11, "Naming a character, place or an object");
         initCard(11, "Farming");
         initCard(11, "Hunting");
         initCard(11, "Cooking");
@@ -823,6 +822,8 @@ public class CardArchive {
         initCard(11, "Save points");
         initCard(11, "Saving the game anytime");
         initCard(11, "New game +");
+        initCard(11, "Being defeated makes the threat more difficult");
+        initCard(11, "The game only ends in the player's failure");
         initCard(11, "Configurable gameplay variables");
         initCard(11, "Random gameplay modifiers");
         initCard(11, "Comedy");

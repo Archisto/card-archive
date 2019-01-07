@@ -18,3 +18,6 @@ How to use this program:
 - Press the Enter key to run the program
 - Press the Up arrow key to insert the previous command to eliminate unnecessary retyping
 - With each run you get different results depending on the arguments
+
+# Download on itch.io
+https://arkisto.itch.io/card-archive-game-elements
