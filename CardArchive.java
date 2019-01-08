@@ -393,9 +393,12 @@ public class CardArchive {
                 return "Goal";
             }
             case 10: {
-                return "Audio & Visuals";
+                return "Progress";
             }
             case 11: {
+                return "Audio & Visuals";
+            }
+            case 12: {
                 return "Miscellaneous";
             }
 
@@ -423,9 +426,11 @@ public class CardArchive {
         initCard(0, "Asynchronous multiplayer");
         initCard(0, "Players start at different times");
         initCard(0, "Other players can join and leave anytime");
+        initCard(0, "Entering another player’s world");
         initCard(0, "Game master");
         initCard(0, "Mentor");
         initCard(0, "Referee");
+        initCard(0, "A party of heroes");
         initCard(0, "Player guilds");
         initCard(0, "Faction war");
         initCard(0, "Membership in different groups");
@@ -440,9 +445,11 @@ public class CardArchive {
         initCard(0, "Summonable allies");
         initCard(0, "AI-controlled sidekick/companion/pet");
         initCard(0, "AI-controlled minions");
+        initCard(0, "Working together on a project");
         initCard(0, "Unusual form of communication");
         initCard(0, "Leaving messages for others");
         initCard(0, "Speaking to a crowd");
+        initCard(0, "Helpful strangers");
         initCard(0, "Family");
         initCard(0, "Crowd/horde");
         initCard(0, "Hive mind");
@@ -461,9 +468,13 @@ public class CardArchive {
         initCard(1, "Rolling hills");
         initCard(1, "Alien landscape");
         initCard(1, "Bleak or hostile landscape");
-        initCard(1, "Abandoned place/object");
+        initCard(1, "Historical era");
+        initCard(1, "Far future");
+        initCard(1, "Makeshift structures or items");
+        initCard(1, "Abandoned place or object");
         initCard(1, "Impossible environment");
         initCard(1, "Parallel worlds");
+        initCard(1, "Distinct biomes");
         initCard(1, "Safety indoors, danger outdoors");
         initCard(1, "Environmental hazards");
         initCard(1, "Hazards rain from above");
@@ -471,13 +482,17 @@ public class CardArchive {
         initCard(1, "Burning heat");
         initCard(1, "Freezing cold");
         initCard(1, "Deadly gas/liquid/radiation");
+        initCard(1, "Slippery surfaces");
         initCard(1, "Invisible walls or platforms");
         initCard(1, "Barriers that only let specific things through");
         initCard(1, "Randomly generated area");
         initCard(1, "Secret areas");
         initCard(1, "Fog of war");
+        initCard(1, "Voxels");
         initCard(1, "Checkpoints");
+        initCard(1, "Save points");
         initCard(1, "Hub area");
+        initCard(1, "Training area that is always available");
         initCard(1, "Optional collectibles");
         initCard(1, "Optional activities");
         initCard(1, "Random events");
@@ -486,10 +501,12 @@ public class CardArchive {
         initCard(2, "Controlling an area");
         initCard(2, "Reshaping the environment");
         initCard(2, "The environment reshapes itself");
+        initCard(2, "The environment is collapsing around the player");
         initCard(2, "Destroying objects/environment");
         initCard(2, "Level editor");
         initCard(2, "Base building");
         initCard(2, "Home decoration");
+        initCard(2, "Management");
         initCard(2, "Founding cities or other settlements");
         initCard(2, "Affecting the ecosystem");
         initCard(2, "Areas can be made safe");
@@ -503,6 +520,7 @@ public class CardArchive {
         initCard(2, "Court of law");
         initCard(2, "Running a business");
         initCard(2, "Player-driven economy");
+        initCard(2, "Earning or paying salary");
         initCard(2, "Adding things to walls");
         initCard(2, "Creating traps/obstacles/barricades");
         initCard(2, "Creating climbable surfaces");
@@ -511,11 +529,13 @@ public class CardArchive {
         initCard(2, "Automating tasks");
         initCard(2, "Rerouting power to different systems");
         initCard(2, "Dead/frozen characters remain as parts of the environment");
+        initCard(2, "An infectious disease, curse or other plague");
         // Character
         initCard(3, "Character customization");
         initCard(3, "Leveling up");
         initCard(3, "Skill tree");
         initCard(3, "Character classes");
+        initCard(3, "Specializing in a profession, skill or combat style");
         initCard(3, "Multiple controllable characters/units");
         initCard(3, "No controllable characters");
         initCard(3, "Looking after the character's needs");
@@ -524,9 +544,11 @@ public class CardArchive {
         initCard(3, "Religion");
         initCard(3, "Karma system");
         initCard(3, "Personality quirks");
+        initCard(3, "Nationality and culture");
         initCard(3, "Power-ups and downs");
         initCard(3, "Blessings and curses");
         initCard(3, "Diseases and cures");
+        initCard(3, "Amnesia");
         initCard(3, "Insanity");
         initCard(3, "Imprisonment");
         initCard(3, "Fall damage");
@@ -539,6 +561,7 @@ public class CardArchive {
         initCard(3, "Biological enhancements");
         initCard(3, "Mechanical/cybernetic enhancements");
         initCard(3, "Divine/unholy enhancements");
+        initCard(3, "A protective suit is needed to survive");
         initCard(3, "The character's size is important");
         initCard(3, "The character's appearance influences gameplay");
         initCard(3, "The character's disability influences gameplay");
@@ -591,7 +614,6 @@ public class CardArchive {
         initCard(5, "Swapping characters'/objects' positions");
         initCard(5, "Conversation options");
         initCard(5, "Moral choices");
-        initCard(5, "Making a deal");
         initCard(5, "Exchanging health for something");
         initCard(5, "Exchanging freedom for something");
         initCard(5, "Database/journal/bestiary");
@@ -606,6 +628,8 @@ public class CardArchive {
         initCard(5, "Programming/hacking");
         initCard(5, "Pattern recognition");
         initCard(5, "Memorization");
+        initCard(5, "Forming a plan");
+        initCard(5, "Making a deal");
         initCard(5, "Truth and lies");
         initCard(5, "Pulling and pushing");
         initCard(5, "Doors and keys");
@@ -632,14 +656,14 @@ public class CardArchive {
         initCard(6, "Pushing enemies off ledges");
         initCard(6, "Dodging attacks");
         initCard(6, "Deflecting attacks");
+        initCard(6, "Using cover");
         initCard(6, "Friendly fire");
         initCard(6, "Weaknesses and resistances to attacks");
         initCard(6, "Focusing attacks on certain parts of the target");
         initCard(6, "Weapons can be found in the world");
         initCard(6, "Equipped weapon changes after getting a kill");
         initCard(6, "Using objects in the world as ammunition");
-        initCard(6, "Permanent death");
-        initCard(6, "No respawning until the round/wave ends");
+        initCard(6, "Attacking a base/fort/castle");
         initCard(6, "Boss enemy");
         initCard(6, "Stealthy enemies");
         initCard(6, "Exploding enemies");
@@ -690,7 +714,6 @@ public class CardArchive {
         initCard(7, "Crashing into things");
         initCard(7, "Objects bounce off surfaces");
         initCard(7, "Fixing objects in place");
-        initCard(7, "Losing abilities or items is necessary to progress");
         // Items
         initCard(8, "Inventory");
         initCard(8, "Finding items");
@@ -707,7 +730,6 @@ public class CardArchive {
         initCard(8, "Excavation tool");
         initCard(8, "Landscaping/farming tools");
         initCard(8, "Musical instruments");
-        initCard(8, "Earning or paying salary");
         initCard(8, "Cash as an inventory item");
         initCard(8, "World map as an inventory item");
         initCard(8, "Maps show special information");
@@ -771,68 +793,82 @@ public class CardArchive {
         initCard(9, "Free-for-All");
         initCard(9, "Last Man Standing");
         initCard(9, "Sandbox mode with unlimited resources");
+        // Progress
+        initCard(10, "Levels can be played in any order");
+        initCard(10, "Progress in the game is based on learning rather than unlocks");
+        initCard(10, "Skillful play yields better rewards or a better grade");
+        initCard(10, "Reallocating spent skill/research/upgrade points");
+        initCard(10, "Even the smallest mishaps have long-lasting effects");
+        initCard(10, "Missions can be failed irreversibly");
+        initCard(10, "Pieces of a picture/puzzle/mystery are gradually unlocked");
+        initCard(10, "Only cosmetic unlockables");
+        initCard(10, "Failure never has big consequences");
+        initCard(10, "Permanent death");
+        initCard(10, "No respawning until the round/fighting ends");
+        initCard(10, "Losing abilities or items is necessary to progress");
+        initCard(10, "The core gameplay loop lasts only a minute or less");
+        initCard(10, "Limited tries/lives");
+        initCard(10, "Saving the game anytime");
+        initCard(10, "New game +");
+        initCard(10, "Being defeated makes the threat more difficult");
+        initCard(10, "The game only ends in the player's failure");
         // Audio & Visuals
-        initCard(10, "2D");
-        initCard(10, "3D");
-        initCard(10, "First-person view");
-        initCard(10, "Third-person view");
-        initCard(10, "Side-scrolling view");
-        initCard(10, "Top-down view");
-        initCard(10, "Isometric view");
-        initCard(10, "Virtual reality");
-        initCard(10, "Augmented reality");
-        initCard(10, "Sounds/voices are important");
-        initCard(10, "Colors are important");
-        initCard(10, "Light and darkness");
-        initCard(10, "Minimal or no HUD");
-        initCard(10, "Audio/visual cues for nearby hazards");
-        initCard(10, "Enemy health is displayed");
-        initCard(10, "Seeing through another player's eyes");
-        initCard(10, "Seeing characters/objects through walls");
-        initCard(10, "Characters'/objects' paths are visualized");
-        initCard(10, "The game camera cannot be freely moved");
-        initCard(10, "Limited vision");
-        initCard(10, "Limited hearing");
-        initCard(10, "Enhanced hearing");
-        initCard(10, "A guiding arrow/line");
-        initCard(10, "Voice acting");
-        initCard(10, "Narrator");
-        initCard(10, "In-game music player for the soundtrack");
-        initCard(10, "Creating sounds or music");
+        initCard(11, "2D");
+        initCard(11, "3D");
+        initCard(11, "First-person view");
+        initCard(11, "Third-person view");
+        initCard(11, "Side-scrolling view");
+        initCard(11, "Top-down view");
+        initCard(11, "Isometric view");
+        initCard(11, "Virtual reality");
+        initCard(11, "Augmented reality");
+        initCard(11, "Sounds/voices are important");
+        initCard(11, "Colors are important");
+        initCard(11, "Light and darkness");
+        initCard(11, "Minimal or no HUD");
+        initCard(11, "Audio/visual cues for nearby hazards");
+        initCard(11, "Enemy health is displayed");
+        initCard(11, "Seeing through another player's eyes");
+        initCard(11, "Seeing characters/objects through walls");
+        initCard(11, "Characters'/objects' paths are visualized");
+        initCard(11, "The game camera cannot be freely moved");
+        initCard(11, "Limited vision");
+        initCard(11, "Limited hearing");
+        initCard(11, "Enhanced hearing");
+        initCard(11, "A guiding arrow/line");
+        initCard(11, "Voice acting");
+        initCard(11, "Narrator");
+        initCard(11, "In-game music player for the soundtrack");
+        initCard(11, "Creating sounds or music");
         // Miscellaneous
-        initCard(11, "Mobile game");
-        initCard(11, "Motion controls");
-        initCard(11, "Unusual controls");
-        initCard(11, "The gameplay relies on the mouse cursor");
-        initCard(11, "The controls consist of only one or two buttons");
-        initCard(11, "The core gameplay loop lasts only a minute or less");
-        initCard(11, "Turn-based gameplay");
-        initCard(11, "Word game");
-        initCard(11, "Board game");
-        initCard(11, "Cards");
-        initCard(11, "Gambling");
-        initCard(11, "Chance and probability");
-        initCard(11, "Crime and punishment");
-        initCard(11, "A made-up language");
-        initCard(11, "Naming a character, place or an object");
-        initCard(11, "Farming");
-        initCard(11, "Hunting");
-        initCard(11, "Cooking");
-        initCard(11, "Limited tries/lives");
-        initCard(11, "Save points");
-        initCard(11, "Saving the game anytime");
-        initCard(11, "New game +");
-        initCard(11, "Being defeated makes the threat more difficult");
-        initCard(11, "The game only ends in the player's failure");
-        initCard(11, "Configurable gameplay variables");
-        initCard(11, "Random gameplay modifiers");
-        initCard(11, "Comedy");
-        initCard(11, "Drama");
-        initCard(11, "Romance");
-        initCard(11, "Musical");
-        initCard(11, "Mystery");
-        initCard(11, "Thriller");
-        initCard(11, "Horror");
+        initCard(12, "Mobile game");
+        initCard(12, "Motion controls");
+        initCard(12, "Unusual controls");
+        initCard(12, "The gameplay relies on the mouse cursor");
+        initCard(12, "The controls consist of only one or two buttons");
+        initCard(12, "Turn-based gameplay");
+        initCard(12, "Fast-paced or even hectic gameplay");
+        initCard(12, "Configurable gameplay variables");
+        initCard(12, "Random gameplay modifiers");
+        initCard(12, "Happy, fun and cute things");
+        initCard(12, "A made-up language");
+        initCard(12, "Naming a character, place or an object");
+        initCard(12, "Word game");
+        initCard(12, "Board game");
+        initCard(12, "Cards");
+        initCard(12, "Gambling");
+        initCard(12, "Chance and probability");
+        initCard(12, "Crime and punishment");
+        initCard(12, "Farming");
+        initCard(12, "Hunting");
+        initCard(12, "Cooking");
+        initCard(12, "Comedy");
+        initCard(12, "Drama");
+        initCard(12, "Romance");
+        initCard(12, "Musical");
+        initCard(12, "Mystery");
+        initCard(12, "Thriller");
+        initCard(12, "Horror");
     }
 
    /**
